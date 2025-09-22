@@ -1,0 +1,103 @@
+﻿@charset "UTF-8";
+
+// skip the rules here because this control is moved from qElite project
+
+.red_star {
+    width: 0;
+    height: 0;
+    position: absolute;
+    inset-inline-end: 0;
+
+    i,
+    svg {
+        margin-inline-start: 0;
+
+        font-size: 0.5rem;
+        font-weight: var(--fw-400);
+
+        color: var(--danger-700);
+
+        vertical-align: top;
+    }
+}
+
+.ctrl-m-validation {
+
+    &__content {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        position: relative;
+
+        color: var(--danger-500);
+
+        font-size: var(--fs-xs);
+    }
+}
+
+.dangerDiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+span.red-text {
+    width: 100%;
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: var(--fs-xs);
+
+    color: var(--danger-500);
+
+    &::before {
+        content: "";
+
+        min-width: 1rem;
+        min-height: 1rem;
+
+        display: inline-flex;
+        gap: 0.15rem;
+
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7.22862 10.1076C7.22862 9.7394 7.52709 9.44092 7.89528 9.44092H7.90127C8.26946 9.44092 8.56794 9.7394 8.56794 10.1076C8.56794 10.4758 8.26946 10.7743 7.90127 10.7743H7.89528C7.52709 10.7743 7.22862 10.4758 7.22862 10.1076Z" fill="%23D92D20"/><path d="M7.40049 8.10759C7.40049 8.38373 7.62435 8.60759 7.90049 8.60759C8.17663 8.60759 8.40049 8.38373 8.40049 8.10759V5.44092C8.40049 5.16478 8.17664 4.94092 7.90049 4.94092C7.62435 4.94092 7.40049 5.16478 7.40049 5.44092V8.10759Z" fill="%23D92D20"/><path fill-rule="evenodd" clip-rule="evenodd" d="M0.733826 8.10759C0.733826 4.14954 3.94245 0.940918 7.90049 0.940918C11.8585 0.940918 15.0672 4.14954 15.0672 8.10759C15.0672 12.0656 11.8585 15.2743 7.90049 15.2743C3.94245 15.2743 0.733826 12.0656 0.733826 8.10759ZM7.90049 1.94092C4.49474 1.94092 1.73383 4.70183 1.73383 8.10759C1.73383 11.5133 4.49474 14.2743 7.90049 14.2743C11.3062 14.2743 14.0672 11.5133 14.0672 8.10759C14.0672 4.70183 11.3062 1.94092 7.90049 1.94092Z" fill="%23D92D20"/></svg>');
+
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+.red-brd {
+    border: none !important;
+}
+
+.ctrl-validation-container {
+    margin-block: 0.25rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+
+    position: relative;
+
+    &.has-mb-only {
+        margin-block-start: 0;
+        margin-block-end: 0.25rem;
+    }
+
+    &:has(> .red-text:empty) {
+        margin-block: 0;
+
+        display: none;
+    }
+
+    > .red-text:empty {
+        display: none;
+    }
+}

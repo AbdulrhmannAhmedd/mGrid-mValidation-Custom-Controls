@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management - mGrid & mValidation</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../Scripts - mValidation - mGrid - mScript with css/grid_newship.css">
+    <link rel="stylesheet" href="../Scripts - mValidation - mGrid - mScript with css/_m-validation.control.module.scss">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../Scripts - mValidation - mGrid - mScript with css/mScript.js"></script>
+    <script src="../Scripts - mValidation - mGrid - mScript with css/mSingleCheck.js"></script>
+    <script src="../Scripts - mValidation - mGrid - mScript with css/mValidation.js"></script>
+    <script src="../Scripts - mValidation - mGrid - mScript with css/mGrid-1.0.js"></script>
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Search Container -->
+        <div class="search-container">
+            <div class="search-row">
+                <label for="searchCriteria">البحث في:</label>
+                <select id="searchCriteria" class="search-dropdown">
+                    <option value="employeeName">اسم الموظف</option>
+                    <option value="idNumber">رقم الهوية</option>
+                    <option value="mobileNumber">رقم الجوال</option>
+                </select>
+                
+                <input type="text" id="searchInput" class="search-input" placeholder="ادخل النص للبحث...">
+                <button id="searchBtn" class="btn btn-primary">
+                    <i class="fas fa-search"></i> بحث
+                </button>
+                <button id="clearSearchBtn" class="btn btn-secondary">
+                    <i class="fas fa-list"></i> عرض الكل
+                </button>
+            </div>
+        </div>
+        
+        <!-- Grid Container -->
+        <div id="gridContainer">
+            <div id="div_empty_show" style="display:none;">لايوجد نتائج متاحة</div>
+            <table id="tbl_showEmps" class="grid_newship"></table>
+            
+            <!-- Pager Controls -->
+            <div id="div_show_Pager" class="pager grid_footer">
+                <button id="btn_show_first">الأول</button>
+                <button id="btn_show_back">السابق</button>
+                <input type="text" id="txt_show_Page" readonly />
+                <button id="btn_show_next">التالي</button>
+                <button id="btn_show_last">الأخير</button>
+                <span id="spn_show_total"></span>
+                <span id="spn_show_grid_paging"></span>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="btn_add" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#employeeModal">
+                    <i class="fas fa-plus"></i> إضافة موظف
+                </button>
+                <button id="btn_view" class="btn btn-info view-btn" disabled>
+                    <i class="fas fa-eye"></i> عرض التفاصيل
+                </button>
+                <button id="btn_edit" class="btn btn-warning edit-btn" disabled>
+                    <i class="fas fa-edit"></i> تعديل
+                </button>
+                <button id="btn_delete" class="btn btn-danger delete-btn" disabled>
+                    <i class="fas fa-trash"></i> حذف
+                </button>
+            </div>
+        </div>
+        
+        <!-- Tooltip Container -->
+        <div class="tooltip" id="tooltip" style="display:none;"></div>
+    </div>
+
+    <!-- Employee Modal -->
+    <div class="modal fade" id="employeeModal" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="employeeModalLabel">إضافة موظف جديد</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="employeeForm">
+                        <!-- Full Name Section -->
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <h6 class="mb-3 text-primary border-bottom pb-2">
+                                    <i class="fas fa-user"></i> الاسم الكامل <span class="text-danger">*</span>
+                                </h6>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="firstName" class="form-label">الاسم الأول <span id="spnA_firstName">*</span></label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="أدخل الاسم الأول">
+                                    <span id="spnE_firstName" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="fatherName" class="form-label">اسم الأب <span id="spnA_fatherName">*</span></label>
+                                    <input type="text" class="form-control" id="fatherName" placeholder="أدخل اسم الأب">
+                                    <span id="spnE_fatherName" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="grandfatherName" class="form-label">اسم الجد <span id="spnA_grandfatherName">*</span></label>
+                                    <input type="text" class="form-control" id="grandfatherName" placeholder="أدخل اسم الجد">
+                                    <span id="spnE_grandfatherName" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="familyName" class="form-label">اسم العائلة <span id="spnA_familyName">*</span></label>
+                                    <input type="text" class="form-control" id="familyName" placeholder="أدخل اسم العائلة">
+                                    <span id="spnE_familyName" class="spnE_"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Info and Contact -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <h6 class="mb-3 text-primary border-bottom pb-2">
+                                    <i class="fas fa-id-card"></i> المعلومات الشخصية والاتصال
+                                </h6>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="photo" class="form-label">
+                                        <i class="fas fa-camera"></i> إضافة صورة
+                                    </label>
+                                    <input type="file" class="form-control" id="photo" accept="image/*">
+                                    <span id="spnE_photo" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="birthDate" class="form-label">تاريخ الميلاد <span id="spnA_birthDate">*</span></label>
+                                    <input type="date" class="form-control" id="birthDate" min="1950-01-01">
+                                    <span id="spnE_birthDate" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="idNumber" class="form-label">رقم الهوية <span id="spnA_idNumber">*</span></label>
+                                    <input type="text" class="form-control" id="idNumber" placeholder="أدخل رقم الهوية">
+                                    <span id="spnE_idNumber" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="mobileNumber" class="form-label">رقم الجوال <span id="spnA_mobileNumber">*</span></label>
+                                    <input type="text" class="form-control" id="mobileNumber" placeholder="966XXXXXXXXX">
+                                    <span id="spnE_mobileNumber" class="spnE_"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gender and Email -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="email" class="form-label">البريد الإلكتروني <span id="spnA_email" style="display:none;">*</span></label>
+                                    <input type="email" class="form-control" id="email" placeholder="example@example.com">
+                                    <span id="spnE_email" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="gender" class="form-label">الجنس</label>
+                                    <div class="mt-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="ذكر" checked>
+                                            <label class="form-check-label" for="genderMale">ذكر</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="أنثى">
+                                            <label class="form-check-label" for="genderFemale">أنثى</label>
+                                        </div>
+                                    </div>
+                                    <span id="spnE_gender" class="spnE_"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Additional Info -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <h6 class="mb-3 text-primary border-bottom pb-2">
+                                    <i class="fas fa-info-circle"></i> معلومات إضافية
+                                </h6>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="nationality" class="form-label">الجنسية <span id="spnA_nationality">*</span></label>
+                                    <select class="form-control" id="nationality">
+                                        <option value="">اختر الجنسية</option>
+                                        <option value="سعودي">سعودي</option>
+                                        <option value="أجنبي">أجنبي</option>
+                                    </select>
+                                    <span id="spnE_nationality" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="maritalStatus" class="form-label">الحالة الاجتماعية</label>
+                                    <select class="form-control" id="maritalStatus">
+                                        <option value="">اختر الحالة</option>
+                                        <option value="أعزب">أعزب</option>
+                                        <option value="متزوج">متزوج</option>
+                                        <option value="مطلق">مطلق</option>
+                                        <option value="أرمل">أرمل</option>
+                                    </select>
+                                    <span id="spnE_maritalStatus" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="education" class="form-label">المؤهل الدراسي <span id="spnA_education" style="display:none;">*</span></label>
+                                    <input type="text" class="form-control" id="education" placeholder="أدخل المؤهل الدراسي">
+                                    <span id="spnE_education" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="employmentDate" class="form-label">تاريخ التعيين <span id="spnA_employmentDate">*</span></label>
+                                    <input type="date" class="form-control" id="employmentDate">
+                                    <span id="spnE_employmentDate" class="spnE_"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bank Info -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bankName" class="form-label">اسم البنك</label>
+                                    <select class="form-control" id="bankName">
+                                        <option value="">اختر البنك</option>
+                                        <option value="الأهلي">البنك الأهلي السعودي</option>
+                                        <option value="الراجحي">بنك الراجحي</option>
+                                        <option value="الرياض">بنك الرياض</option>
+                                        <option value="ساب">البنك السعودي البريطاني</option>
+                                        <option value="سامبا">بنك سامبا</option>
+                                    </select>
+                                    <span id="spnE_bankName" class="spnE_"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="bankAccount" class="form-label">رقم الحساب البنكي <span id="spnA_bankAccount">*</span></label>
+                                    <input type="text" class="form-control" id="bankAccount" placeholder="أدخل رقم الحساب">
+                                    <span id="spnE_bankAccount" class="spnE_"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <!-- Removed Holiday Balance section as requested -->
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                    <button type="button" class="btn btn-success" id="saveEmployee">
+                        <i class="fas fa-save"></i> حفظ الموظف
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Dependencies -->
+
+    
+    <!-- Main Application Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>

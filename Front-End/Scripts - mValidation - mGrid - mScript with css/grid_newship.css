@@ -1,0 +1,235 @@
+﻿.grid_newship, .grid_newship table {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+    .grid_newship, .grid_newship tr,
+    .grid_newship tr th, .grid_newship tr td {
+        border: 1px solid #ccc !important;
+        border-collapse: collapse !important;
+        text-align: center;
+    }
+
+        .grid_newship thead, .grid_newship tbody {
+            border: none !important;
+        }
+
+        .grid_newship tbody {
+            color: #000 !important;
+        }
+
+        .grid_newship tr td i.fa-times {
+            text-align: center;
+            font-size: 16px;
+            color: #e20808;
+            line-height: 23px;
+        }
+
+        .grid_newship tr td i.dis_icon {
+            color: #888;
+        }
+
+        .grid_newship tr th {
+            color: #fff;
+            text-align: center;
+            background: #5984ca;
+        }
+
+        .grid_newship tr th {
+            padding: 0px !important;
+        }
+
+        .grid_newship tr td {
+            height: 20px !important;
+        }
+
+        .grid_newship thead {
+            background: #2586B0;
+            color: #fff;
+            height: 25px;
+            line-height: 25px;
+        }
+
+            .grid_newship thead th span {
+                color: #fff;
+            }
+
+        .grid_newship tr:nth-child(even) {
+            background: #eee;
+        }
+
+        .grid_newship tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        .grid_newship tbody tr td div {
+            overflow: hidden;
+            color: #000;
+            margin:0 auto;
+        }
+
+        .grid_newship tr td.time_td div {
+            padding: initial !important;
+            overflow: visible !important;
+        }
+
+        .grid_newship tfoot tr td div {
+            padding: 4px;
+        }
+
+.pagging-bx {
+    background: #eee;
+    text-align: center;
+}
+
+    .pagging-bx #txt_Page {
+        text-align: center;
+    }
+
+    .pagging-bx .gradiant {
+        min-width: 66px;
+    }
+
+.grid_newship span.margin_right30 {
+    margin-right: 30px;
+}
+
+.grid_newship tr td input[type="checkbox"] {
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.grid_footer2 {
+    width: 823px !important;
+}
+
+.grid_newship tr td .gradiant,
+.grid_newship tr th .gradiant {
+    padding: 0 10px;
+}
+
+.grid_newship_nocolor tr:nth-child(even),
+.grid_newship_nocolor tr:nth-child(odd) {
+    background: #fff !important;
+}
+
+.grid_newship_nocolor tr.yellow_clr {
+    background: #fcffb2 !important;
+}
+
+.grid_newship_nocolor tr.red_clr {
+    background: #FFD3D3 !important;
+}
+
+.grid_newship_sidebar tr th {
+    width: 30%;
+    padding: 5px !important;
+}
+
+#tbl_citzTreatment_data tr td div {
+    padding: 0;
+    margin: 0 2px;
+}
+/*.grid_layoutWidth{
+    display: table;
+    table-layout: fixed;
+}*/
+.grid_tbl_letter {
+    table-layout: inherit !important;
+}
+
+.grid_layoutWidth tr, .grid_layoutWidth tr th, .grid_layoutWidth tr td {
+    box-sizing: border-box;
+}
+
+    .grid_layoutWidth tr td div {
+        padding: 0;
+        margin: 0 3px;
+    }
+
+.grid_layoutWidth tfoot tr td div {
+    margin: 0
+}
+/*.grid_layoutWidth tr td:last-child div{
+    padding-left: 13px;
+}*/
+.layout_grid {
+    table-layout: initial !important;
+}
+
+.grid_newship .div_bar_grid {
+    padding: 8px 0;
+    display: block;
+}
+
+    .grid_newship .div_bar_grid div {
+        overflow: inherit !important;
+    }
+
+        .grid_newship .div_bar_grid div div {
+            padding: inherit !important;
+            margin: 0px;
+            overflow: inherit !important;
+        }
+
+.grid_cursor tr td {
+    cursor: pointer !important;
+}
+
+.grid_newship .pos_info_alrt i {
+    color: #fff;
+}
+
+.grid_newship th, .grid_newship td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.grid_newship .divContainerCtrlCls {
+    overflow: auto;
+    width: 190px;
+}
+
+.grid_newship .attachShoh_ctl .attachLst_bx {
+    max-height: 150px;
+    height: initial;
+}
+.prs_payroll .grid_newship .attachShoh_ctl .attachLst_bx {
+    overflow: hidden !important;
+}
+.prs_payroll .grid_newship {
+    border-bottom: none !important
+}
+.grid_newship_visDiv tr td {
+    position: relative;
+}
+
+    .grid_newship_visDiv tr td > .ddl_multiSelect.ddl_multiSelect_dynamicCntrl, .grid_newship_visDiv tr td > input,
+    .grid_newship_visDiv tr td > .fa.fa-close {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+        .grid_newship_visDiv tr td > input.inpt_txt {
+            margin: 0 5px !important;
+        }
+
+.grid_resize tbody tr td {
+    position: relative
+}
+
+    .grid_resize tbody tr td div {
+        position: absolute;
+        left: 0;
+        right:0;
+        top: 0;
+        max-width: 98% !important;
+        /*      margin: 0 -3px;*/
+    }
+
+.grid_rel tbody tr td div {
+    position: relative !important;
+}
