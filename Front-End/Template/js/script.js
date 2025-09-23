@@ -13,7 +13,27 @@ var employeesGrid = {
     Columns: [
         GridHelper.getGridColumnCheckBoxObj("", "", "idNumber"),
         GridHelper.getGridColumnObj('idNumber', "رقم الهوية", false, "", 15, true),
-        GridHelper.getGridColumnObj('employeeName', "اسم الموظف", false, "", 25, true),
+        {
+            Name: 'employeeName',
+            Header: { Text: "إسم الموظف" },
+            Cell: {
+                onCellComplete: function (td, text, row) {
+                    var div = document.createElement('DIV');
+                    div.innerHTML = text;
+
+                    div.setAttribute('onmouseover', 'td_MouseOver(event);');
+                    div.setAttribute('onmouseout', 'td_MouseOut(event);');
+                    div.setAttribute('full_title', text);
+
+                    div.style.overflow = 'hidden';
+                    div.style.width = '100px'
+                    div.style.height = "20px";
+                    td.innerHTML = '';
+                    td.appendChild(div);
+                }
+            },
+            Sort: true,
+        },
         GridHelper.getGridColumnObj('mobileNumber', "رقم الجوال", false, "", 15, true),
         GridHelper.getGridColumnObj('maritalStatus', "الحالة الاجتماعية", false, "", 15, true),
         GridHelper.getGridColumnObj('nationality', "الجنسية", false, "", 15, true),
@@ -193,12 +213,12 @@ var EmpApp = {
                 },
                 Length: {
                     minLength: {
-                        Value: 10,
-                        Msg: 'رقم الهوية يجب أن يكون 10 أرقام'
+                        Value: 4,
+                        Msg: 'رقم الهوية يجب أن يكون 4 أرقام'
                     },
                     maxLength: {
-                        Value: 10,
-                        Msg: 'رقم الهوية يجب ألا يزيد عن 10 أرقام'
+                        Value: 4,
+                        Msg: 'رقم الهوية يجب ألا يزيد عن 4 أرقام'
                     }
                 },
                 checkExist: {
