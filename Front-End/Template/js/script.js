@@ -201,14 +201,14 @@ var EmpApp = {
                         Msg: 'رقم الهوية يجب ألا يزيد عن 10 أرقام'
                     }
                 },
-                // checkExist: {
-                //     Url: 'http://localhost:5142/api/Employee/CheckIdExists', // simulate api call
-                //     Data: function() {
-                //         return JSON.stringify({ idNumber: document.getElementById('idNumber').value });
-                //     },
-                //     successValue: 'false',
-                //     Msg: 'عفواً رقم الهوية مكرر'
-                // }
+                checkExist: {
+                    Url: 'http://localhost:5142/api/Employee/CheckIdExists',
+                    Data: function() {
+                        return JSON.stringify({ idNumber: document.getElementById('idNumber').value });
+                    },
+                    successValue: 'false',
+                    Msg: 'عفواً رقم الهوية مكرر'
+                }
             }
         },
         // Nationality
@@ -245,13 +245,17 @@ var EmpApp = {
                 }
             }
         },
-        // Email (Optional)
+        //! Email (Optional)
         {
             Element: 'email',
             spn_A: 'spnA_email',
             spn_E: 'spnE_email',
             validationScheme: {
                 Length: {
+                    minLength: {
+                        Value: 5,
+                        Msg: 'البريد الإلكتروني يجب ألا بقل عن 5 حرف'
+                    },
                     maxLength: {
                         Value: 50,
                         Msg: 'البريد الإلكتروني يجب ألا يزيد عن 50 حرف'
